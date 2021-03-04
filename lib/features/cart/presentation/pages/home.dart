@@ -38,6 +38,20 @@ class __HomeViewState extends State<_HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/logo_tul_blanco.png',
+              height: kToolbarHeight * 0.5,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text('Shopping Cart'),
+            )
+          ],
+        ),
+      ),
       body: IndexedStack(
         index: _index,
         children: [
