@@ -1,6 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:tul_shoppingcart/features/cart/data/models/cart.dart';
 
-void main() {
+import 'features/cart/data/data_sources/firestore_api_client.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  final client = FireStoreApiClient();
+  //final cart = await client.init();
+  //await client.setCartItem(cart.cartId, Item(productId: 0), cart.products);
+
   runApp(MyApp());
 }
 
