@@ -22,9 +22,9 @@ class FireStoreApiClient {
 
   Future<List<Product>> getProducts() async {
     final productsSnapshot = await _products.get();
-    return productsSnapshot.docs
-        .map((p) => Product.fromJson(p.data()))
-        .toList();
+    final products =
+        productsSnapshot.docs.map((p) => Product.fromJson(p.data())).toList();
+    return products;
   }
 
   Future<Cart> init() async {
@@ -47,22 +47,11 @@ class FireStoreApiClient {
     return newCart;
   }
 
-  Future<Cart> setCartItem(int cartId, Item item, List<Item> items) async {
-    for (int i = 0; i < items?.length; i++) {
-      if (item.productId == items[i].productId) {
-        items.add(
-          Item(productId: item.productId, quantity: items[i].quantity + 1),
-        );
-        items.removeAt(i);
-        _carts.add(Cart(cartId: cartId, products: items).toJson());
-        return Cart(cartId: cartId, products: items);
-      }
-    }
-    items.add(
-      Item(productId: item.productId, quantity: 1),
-    );
-    _carts.add(Cart(cartId: cartId, products: items).toJson());
-    return Cart(cartId: cartId, products: items);
+  Future<Cart> updateCart(Cart cart) async {
+    final sp = await SharedPreferences.getInstance();
+    final cartId = sp.getString('cart_key');
+    await _carts.doc(cartId).update(cart.toJson());
+    return Cart(cartId: cart.cartId, products: cart.products);
   }
 
   Future<Cart> getCart() async {
@@ -72,13 +61,13 @@ class FireStoreApiClient {
     return Cart.fromJson(cartSnapshot.data());
   }
 
-  Future<void> order(Cart cart) async {
+  Future<void> order(int cartId) async {
     final sp = await SharedPreferences.getInstance();
     final purchaseId = sp.getString('purchase_key');
     await _purchase
         .doc(purchaseId)
-        .update(Purchase(id: cart.cartId, status: 'complete').toJson());
-    sp.setString('purchase_key', '');
-    sp.setString('cart_key', '');
+        .update(Purchase(id: cartId, status: 'complete').toJson());
+    sp.setString('purchase_key', null);
+    sp.setString('cart_key', null);
   }
 }
