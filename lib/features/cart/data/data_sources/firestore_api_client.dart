@@ -54,13 +54,6 @@ class FireStoreApiClient {
     return Cart(cartId: cart.cartId, products: cart.products);
   }
 
-  Future<Cart> getCart() async {
-    final sp = await SharedPreferences.getInstance();
-    final cartId = sp.getString('cart_key');
-    final cartSnapshot = await _carts.doc(cartId).get();
-    return Cart.fromJson(cartSnapshot.data());
-  }
-
   Future<void> order(int cartId) async {
     final sp = await SharedPreferences.getInstance();
     final purchaseId = sp.getString('purchase_key');

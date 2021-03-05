@@ -20,16 +20,6 @@ class CartListCubit extends Cubit<CartListState> {
     }
   }
 
-  Future<void> fetchCart() async {
-    emit(state.copyWith(status: CartListStatus.loading));
-    try {
-      final cart = await _repository.getCart();
-      emit(state.copyWith(cart: cart, status: CartListStatus.success));
-    } on Exception {
-      emit(state.copyWith(status: CartListStatus.failure));
-    }
-  }
-
   Future<void> removeCartItem(Product product) async {
     emit(state.copyWith(status: CartListStatus.loading));
     if (state.cart.products.isEmpty) {

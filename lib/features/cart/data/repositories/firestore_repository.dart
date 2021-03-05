@@ -11,32 +11,16 @@ class FireStoreRepository implements CartRepository {
   final FireStoreApiClient _client;
 
   @override
-  Future<Cart> getCart() async {
-    final cart = await _client.getCart();
-    final items = cart.products
-        .map(
-          (i) => Item(
-            product: Product(
-                id: i.product.id,
-                image: i.product.image,
-                name: i.product.name,
-                price: i.product.price),
-            quantity: i.quantity,
-          ),
-        )
-        .toList();
-    return Cart(products: items, cartId: cart.cartId);
-  }
-
-  @override
   Future<Cart> init() async {
     final cart = await _client.init();
-    final items = cart.products
+    final products = cart.products
         .map(
           (i) => Item(
             product: Product(
               id: i.product.id,
               image: i.product.image,
+              description: i.product.description,
+              sku: i.product.sku,
               name: i.product.name,
               price: i.product.price,
             ),
@@ -44,7 +28,7 @@ class FireStoreRepository implements CartRepository {
           ),
         )
         .toList();
-    return Cart(products: items, cartId: cart.cartId);
+    return Cart(products: products, cartId: cart.cartId);
   }
 
   @override
