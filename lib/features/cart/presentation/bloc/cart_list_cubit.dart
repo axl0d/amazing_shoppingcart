@@ -36,7 +36,7 @@ class CartListCubit extends Cubit<CartListState> {
       emit(state.copyWith(status: CartListStatus.success, cart: state.cart));
     } else {
       final updatedProducts = state.cart.products
-          .map((i) => product.id != i.productId
+          .map((i) => product.id != i.product.id
               ? i
               : i.quantity > 1
                   ? i.copyWith(quantity: i.quantity - 1)
@@ -57,19 +57,19 @@ class CartListCubit extends Cubit<CartListState> {
   Future<void> addCartItem(Product product) async {
     emit(state.copyWith(status: CartListStatus.loading));
     if (state.cart.products.isEmpty) {
-      state.cart.products.add(Item(quantity: 1, productId: product.id));
+      state.cart.products.add(Item(quantity: 1, product: product));
       await _repository.updateCart(cart: state.cart);
       emit(state.copyWith(status: CartListStatus.success, cart: state.cart));
     } else {
       final containts =
-          state.cart.products.where((i) => product.id == i.productId);
+          state.cart.products.where((i) => product.id == i.product.id);
       if (containts.isEmpty) {
-        state.cart.products.add(Item(quantity: 1, productId: product.id));
+        state.cart.products.add(Item(quantity: 1, product: product));
         await _repository.updateCart(cart: state.cart);
         emit(state.copyWith(status: CartListStatus.success, cart: state.cart));
       } else {
         final updatedProducts = state.cart.products
-            .map((i) => product.id == i.productId
+            .map((i) => product.id == i.product.id
                 ? i.copyWith(quantity: i.quantity + 1)
                 : i)
             .toList();

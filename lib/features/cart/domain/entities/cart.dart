@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:tul_shoppingcart/features/cart/domain/entities/entities.dart';
 
 class Cart extends Equatable {
   final int cartId;
@@ -16,26 +17,29 @@ class Cart extends Equatable {
     );
   }
 
+  double get total => products.fold(
+      0, (total, current) => total + current.product.price * current.quantity);
+
   @override
   List<Object> get props => [cartId, products];
 }
 
 class Item extends Equatable {
-  final int productId;
+  final Product product;
   final int quantity;
 
-  const Item({this.productId, this.quantity});
+  const Item({this.product, this.quantity});
 
   Item copyWith({
-    int productId,
+    Product product,
     int quantity,
   }) {
     return Item(
-      productId: productId ?? this.productId,
+      product: product ?? this.product,
       quantity: quantity ?? this.quantity,
     );
   }
 
   @override
-  List<Object> get props => [productId, quantity];
+  List<Object> get props => [product, quantity];
 }

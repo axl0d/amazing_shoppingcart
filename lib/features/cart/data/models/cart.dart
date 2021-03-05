@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tul_shoppingcart/features/cart/data/models/models.dart';
 
 part 'cart.g.dart';
 
@@ -15,13 +16,12 @@ class Cart {
   Map<String, dynamic> toJson() => _$CartToJson(this);
 }
 
-@JsonSerializable(checked: true)
+@JsonSerializable(checked: true, explicitToJson: true)
 class Item {
-  @JsonKey(name: 'product_id')
-  final int productId;
+  final Product product;
   final int quantity;
 
-  const Item({this.productId, this.quantity});
+  const Item({this.product, this.quantity});
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tul_shoppingcart/features/cart/domain/entities/product.dart';
 import 'package:tul_shoppingcart/features/cart/presentation/bloc/cart_list_cubit.dart';
 
 class CartBody extends StatelessWidget {
@@ -23,33 +22,31 @@ class CartBody extends StatelessWidget {
                       child: Column(
                         children: [
                           const Expanded(child: const SizedBox()),
-                          Text(state.cart.products[index].productId.toString()),
-                          Text(state.cart.products[index].quantity.toString()),
+                          Text(state.cart.products[index].product.name
+                              .toString()),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               IconButton(
                                 onPressed: () => context
                                     .read<CartListCubit>()
                                     .removeCartItem(
-                                      Product(
-                                          id: state
-                                              .cart.products[index].productId),
+                                      state.cart.products[index].product,
                                     ),
                                 icon: Icon(Icons.remove),
                               ),
-                              const Expanded(child: const SizedBox()),
+                              Text(state.cart.products[index].quantity
+                                  .toString()),
                               IconButton(
-                                onPressed: () =>
-                                    context.read<CartListCubit>().addCartItem(
-                                          Product(
-                                              id: state.cart.products[index]
-                                                  .productId),
-                                        ),
+                                onPressed: () => context
+                                    .read<CartListCubit>()
+                                    .addCartItem(
+                                        state.cart.products[index].product),
                                 icon: Icon(Icons.add),
                               ),
                             ],
                           ),
-                          TextButton(onPressed: null, child: Text('Quitar'))
+                          TextButton(onPressed: null, child: Text('Quitar')),
                         ],
                       ),
                     ),
@@ -62,7 +59,7 @@ class CartBody extends StatelessWidget {
                   Card(
                     child: Padding(
                       padding: const EdgeInsets.all(16),
-                      child: Text('Total:'),
+                      child: Text('Total: \$${state.cart.total}'),
                     ),
                   ),
                   FlatButton(

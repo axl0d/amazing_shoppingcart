@@ -30,14 +30,18 @@ Map<String, dynamic> _$CartToJson(Cart instance) => <String, dynamic>{
 Item _$ItemFromJson(Map<String, dynamic> json) {
   return $checkedNew('Item', json, () {
     final val = Item(
-      productId: $checkedConvert(json, 'product_id', (v) => v as int),
+      product: $checkedConvert(
+          json,
+          'product',
+          (v) =>
+              v == null ? null : Product.fromJson(v as Map<String, dynamic>)),
       quantity: $checkedConvert(json, 'quantity', (v) => v as int),
     );
     return val;
-  }, fieldKeyMap: const {'productId': 'product_id'});
+  });
 }
 
 Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
-      'product_id': instance.productId,
+      'product': instance.product?.toJson(),
       'quantity': instance.quantity,
     };

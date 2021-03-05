@@ -14,6 +14,7 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
       name: $checkedConvert(json, 'name', (v) => v as String),
       description: $checkedConvert(json, 'description', (v) => v as String),
       image: $checkedConvert(json, 'image', (v) => v as String),
+      price: $checkedConvert(json, 'price', (v) => (v as num)?.toDouble()),
     );
     return val;
   });
@@ -25,4 +26,5 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'name': instance.name,
       'description': instance.description,
       'image': instance.image,
+      'price': instance.price,
     };
