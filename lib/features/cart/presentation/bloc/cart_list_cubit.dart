@@ -21,10 +21,8 @@ class CartListCubit extends Cubit<CartListState> {
   }
 
   Future<void> removeCartItem(Product product) async {
-    emit(state.copyWith(status: CartListStatus.loading));
-    if (state.cart.products.isEmpty) {
-      emit(state.copyWith(status: CartListStatus.success, cart: state.cart));
-    } else {
+    if (state.cart.products.isNotEmpty) {
+      emit(state.copyWith(status: CartListStatus.loading));
       final updatedProducts = state.cart.products
           .map((i) => product.id != i.product.id
               ? i
