@@ -85,6 +85,20 @@ class CartListCubit extends Cubit<CartListState> {
     }
   }
 
+  Future<void> popCartItem(Product product) async {
+    emit(state.copyWith(status: CartListStatus.loading));
+    final updatedProducts =
+        state.cart.products.where((i) => i.product.id != product.id).toList();
+    await _repository.updateCart(
+        cart: state.cart.copyWith(products: updatedProducts));
+    emit(state.copyWith(
+      status: CartListStatus.success,
+      cart: state.cart.copyWith(
+        products: updatedProducts,
+      ),
+    ));
+  }
+
   Future<void> order() async {
     emit(state.copyWith(status: CartListStatus.loading));
     await _repository.order(cartId: state.cart.cartId);

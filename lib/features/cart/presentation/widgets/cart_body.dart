@@ -111,7 +111,10 @@ class _CartItem extends StatelessWidget {
               ),
             ],
           ),
-          TextButton(onPressed: null, child: Text('Quitar')),
+          TextButton(
+            onPressed: () => context.read<CartListCubit>().popCartItem(product),
+            child: Text('Quitar'),
+          ),
         ],
       ),
     );
