@@ -77,6 +77,7 @@ class FireStoreRepository implements CartRepository {
                   name: i.product.name,
                   description: i.product.description,
                   sku: i.product.sku,
+                  price: i.product.price,
                 ),
                 quantity: i.quantity,
               ),

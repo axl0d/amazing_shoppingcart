@@ -15,7 +15,7 @@ class CartApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Tul Shopping Cart',
         theme: ThemeData(
-          primarySwatch: Colors.green,
+          primarySwatch: colorCustom,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: HomePage(),
@@ -23,3 +23,18 @@ class CartApp extends StatelessWidget {
     );
   }
 }
+
+Map<int, Color> color = {
+  50: Color.fromRGBO(0, 100, 80, .1),
+  100: Color.fromRGBO(0, 100, 80, .2),
+  200: Color.fromRGBO(0, 100, 80, .3),
+  300: Color.fromRGBO(0, 100, 80, .4),
+  400: Color.fromRGBO(0, 100, 80, .5),
+  500: Color.fromRGBO(0, 100, 80, .6),
+  600: Color.fromRGBO(0, 100, 80, .7),
+  700: Color.fromRGBO(0, 100, 80, .8),
+  800: Color.fromRGBO(0, 100, 80, .9),
+  900: Color.fromRGBO(0, 100, 80, 1),
+};
+
+MaterialColor colorCustom = MaterialColor(0xFF006450, color);
