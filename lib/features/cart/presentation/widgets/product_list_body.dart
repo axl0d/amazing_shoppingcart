@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tul_shoppingcart/features/cart/presentation/bloc/cart_list_cubit.dart';
-import 'package:tul_shoppingcart/features/cart/presentation/bloc/product_list_cubit.dart';
+import 'package:tul_shoppingcart/features/cart/domain/entities/product.dart';
+import 'package:tul_shoppingcart/features/cart/presentation/bloc/cubits.dart';
+import 'package:tul_shoppingcart/features/cart/presentation/widgets/title_item.dart';
+import 'image_item.dart';
+import 'loading.dart';
 
 class ProductListBody extends StatelessWidget {
   @override
@@ -17,39 +20,50 @@ class ProductListBody extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(16),
             itemCount: state.products.length,
-            itemBuilder: (context, index) => Card(
-              child: Column(
-                children: [
-                  const Expanded(child: const SizedBox()),
-                  Text(state.products[index].name),
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () => context
-                            .read<CartListCubit>()
-                            .removeCartItem(state.products[index]),
-                        icon: Icon(Icons.remove),
-                      ),
-                      const Expanded(child: const SizedBox()),
-                      IconButton(
-                        onPressed: () => context
-                            .read<CartListCubit>()
-                            .addCartItem(state.products[index]),
-                        icon: Icon(Icons.add),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+            itemBuilder: (context, index) => _ProductItem(
+              product: state.products[index],
             ),
           );
         default:
-          return Container(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
+          return Loading();
       }
     });
+  }
+}
+
+class _ProductItem extends StatelessWidget {
+  const _ProductItem({Key key, this.product}) : super(key: key);
+
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Column(
+        children: [
+          ImageItem(
+            image: product.image,
+          ),
+          TitleItem(
+            title: product.name,
+          ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () =>
+                    context.read<CartListCubit>().removeCartItem(product),
+                icon: Icon(Icons.remove),
+              ),
+              const Expanded(child: const SizedBox()),
+              IconButton(
+                onPressed: () =>
+                    context.read<CartListCubit>().addCartItem(product),
+                icon: Icon(Icons.add),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }

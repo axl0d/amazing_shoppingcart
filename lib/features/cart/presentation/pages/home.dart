@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tul_shoppingcart/features/cart/data/repositories/firestore_repository.dart';
-import 'package:tul_shoppingcart/features/cart/presentation/bloc/cart_list_cubit.dart';
-import 'package:tul_shoppingcart/features/cart/presentation/bloc/product_list_cubit.dart';
-import 'package:tul_shoppingcart/features/cart/presentation/widgets/cart_body.dart';
-import 'package:tul_shoppingcart/features/cart/presentation/widgets/product_list_body.dart';
+import 'package:tul_shoppingcart/features/cart/presentation/bloc/cubits.dart';
+import 'package:tul_shoppingcart/features/cart/presentation/widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -45,7 +43,7 @@ class __HomeViewState extends State<_HomeView> {
               'assets/logo_tul_blanco.png',
               height: kToolbarHeight * 0.5,
             ),
-            Padding(
+            const Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Text('Shopping Cart'),
             )
@@ -63,11 +61,11 @@ class __HomeViewState extends State<_HomeView> {
         currentIndex: _index,
         onTap: (value) => setState(() => _index = value),
         items: [
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: 'Cart',
           ),
