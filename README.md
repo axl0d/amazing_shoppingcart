@@ -1,8 +1,8 @@
-# tul_shoppingcart
+# amazing_shoppingcart
 
 Another shopping cart made with :blue_heart: Flutter.
 
-![demo](/screenshots/tul.gif)
+![demo](/screenshots/amazing_shoppingcart.gif)
 
 ## Setup
 

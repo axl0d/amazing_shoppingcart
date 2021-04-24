@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "982226726645",
-    "project_id": "tul-shoppingcart",
-    "storage_bucket": "tul-shoppingcart.appspot.com"
+    "project_number": "838564194586",
+    "project_id": "amazing-shoppingcart-81222",
+    "storage_bucket": "amazing-shoppingcart-81222.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:982226726645:android:144b1e4c02c493157edfbc",
+        "mobilesdk_app_id": "1:838564194586:android:93c8a4796761a2ef75a4a3",
         "android_client_info": {
-          "package_name": "com.example.tul_shoppingcart"
+          "package_name": "com.example.amazing_shoppingcart"
         }
       },
       "oauth_client": [
         {
-          "client_id": "982226726645-r39rla3bac1pniu0up50b51tapikaari.apps.googleusercontent.com",
+          "client_id": "838564194586-n71mmdeup70pa80h3flobuctd6rrv8au.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB9IkjArj_T5SUWbN0yIXITq2DzU6MaQXE"
+          "current_key": "AIzaSyCpQ3HUJDPBzrz06gApbrFWXQyZUO9ls-c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "982226726645-r39rla3bac1pniu0up50b51tapikaari.apps.googleusercontent.com",
+              "client_id": "838564194586-n71mmdeup70pa80h3flobuctd6rrv8au.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

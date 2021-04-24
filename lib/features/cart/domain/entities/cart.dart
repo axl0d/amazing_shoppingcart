@@ -1,5 +1,5 @@
+import 'package:amazing_shoppingcart/features/cart/domain/entities/entities.dart';
 import 'package:equatable/equatable.dart';
-import 'package:tul_shoppingcart/features/cart/domain/entities/entities.dart';
 
 class Cart extends Equatable {
   final int cartId;
@@ -19,6 +19,8 @@ class Cart extends Equatable {
 
   double get total => products.fold(
       0, (total, current) => total + current.product.price * current.quantity);
+
+  String get totalLabel => total.toStringAsFixed(2);
 
   @override
   List<Object> get props => [cartId, products];

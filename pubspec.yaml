@@ -1,4 +1,4 @@
-name: tul_shoppingcart
+name: amazing_shoppingcart
 description: A new Flutter project.
 
 publish_to: 'none'
@@ -17,6 +17,8 @@ dependencies:
   json_annotation:
   flutter_bloc:
   equatable:
+  injectable:
+  get_it:
   cupertino_icons: ^1.0.0
 
 dev_dependencies:
@@ -24,11 +26,10 @@ dev_dependencies:
     sdk: flutter
   build_runner:
   json_serializable:
+  injectable_generator:
   mockito:
   pedantic: ^1.9.0
 
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/logo_tul_blanco.png

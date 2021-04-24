@@ -1,10 +1,11 @@
+import 'package:amazing_shoppingcart/features/cart/domain/entities/entities.dart';
+import 'package:amazing_shoppingcart/features/cart/presentation/bloc/cart_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tul_shoppingcart/features/cart/domain/entities/entities.dart';
-import 'package:tul_shoppingcart/features/cart/presentation/bloc/cart_list_cubit.dart';
+
 import 'image_item.dart';
-import 'title_item.dart';
 import 'loading.dart';
+import 'title_item.dart';
 
 class CartBody extends StatelessWidget {
   @override
@@ -38,7 +39,7 @@ class CartBody extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(
-                          'Total: \$${state.cart.total}',
+                          'Total: \$${state.cart.totalLabel}',
                           style: Theme.of(context).textTheme.headline5,
                         ),
                       ),

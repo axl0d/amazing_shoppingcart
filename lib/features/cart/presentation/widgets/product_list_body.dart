@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tul_shoppingcart/features/cart/domain/entities/product.dart';
-import 'package:tul_shoppingcart/features/cart/presentation/bloc/cubits.dart';
-import 'package:tul_shoppingcart/features/cart/presentation/widgets/title_item.dart';
+import 'package:amazing_shoppingcart/features/cart/domain/entities/product.dart';
+import 'package:amazing_shoppingcart/features/cart/presentation/bloc/cubits.dart';
+import 'package:amazing_shoppingcart/features/cart/presentation/widgets/title_item.dart';
 import 'image_item.dart';
 import 'loading.dart';
 
